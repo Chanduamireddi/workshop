@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop Registration</title>
+    <link rel="stylesheet" th:href="@{/css/registrationForm.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Workshop Registration</h1>
+
+        <p th:if="${successMessage}" th:text="${successMessage}" class="success-message"></p>
+        <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
+
+        <div class="form-wrapper">
+            <form th:action="@{/register}" th:object="${workshopRegistration}" method="post">
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" th:field="*{firstName}" required />
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" th:field="*{lastName}" required />
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" th:field="*{email}" required />
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number:</label>
+                    <input type="text" th:field="*{phoneNumber}" required />
+                    <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Company/Institution:</label>
+                    <input type="text" th:field="*{companyInstitution}" required />
+                    <span th:if="${#fields.hasErrors('companyInstitution')}" th:errors="*{companyInstitution}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Address:</label>
+                    <textarea th:field="*{address}" required></textarea>
+                    <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>City:</label>
+                    <input type="text" th:field="*{city}" required />
+                    <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>State/Province/Region:</label>
+                    <input type="text" th:field="*{state}" required />
+                    <span th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Country:</label>
+                    <input type="text" th:field="*{country}" required />
+                    <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Meal Preference:</label>
+                    <select th:field="*{mealPreference}" required>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Non-Vegetarian">Non-Vegetarian</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Mode:</label>
+                    <input type="radio" th:field="*{paymentMode}" value="Cash" required /> CASH
+                    <input type="radio" th:field="*{paymentMode}" value="Cheque" required /> CHEQUE
+                    <input type="radio" th:field="*{paymentMode}" value="Demand Draft" required /> DEMAND DRAFT
+                    <span th:if="${#fields.hasErrors('paymentMode')}" th:errors="*{paymentMode}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>DD/Cheque Number:</label>
+                    <input type="text" th:field="*{chequeNumber}" />
+                    <span th:if="${#fields.hasErrors('chequeNumber')}" th:errors="*{chequeNumber}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Drawn On(Bank Name):</label>
+                    <input type="text" th:field="*{bankName}" />
+                    <span th:if="${#fields.hasErrors('bankName')}" th:errors="*{bankName}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Payable At:</label>
+                    <input type="text" th:field="*{payableAt}" />
+                    <span th:if="${#fields.hasErrors('payableAt')}" th:errors="*{payableAt}"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit">Submit</button>
+                    <a href="/register" class="reset-button">Reset</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
